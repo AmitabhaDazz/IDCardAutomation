@@ -73,6 +73,9 @@ section:after {
 
             <input class="controls__input" id="dob" type="text" value=""/>
             <label class="controls__label" for="dob"></label>
+            <br>
+            <input class="controls__input" id="idnum" type="text" value=""/>
+            <label class="controls__label" for="idnum"></label>
           </div>
           </nav>
 <article>
@@ -113,6 +116,12 @@ function DrawOverlay1(img) {
     ctx.fillStyle = 'rgba(0,0,0,0)';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 }
+
+function DrawOverlay2(img) {
+
+ctx.fillStyle = 'rgba(0,0,0,0)';
+ctx.fillRect(0, 0, canvas.width, canvas.height);
+}
 function DrawText() {
     ctx.fillStyle = "black";
     ctx.textBaseline = 'middle';
@@ -121,6 +130,13 @@ function DrawText() {
     
 }
 function DrawDOB() {
+    ctx.fillStyle = "black";
+    ctx.textBaseline = 'middle';
+    ctx.font = "50px 'Montserrat'";
+    ctx.fillText(text_title, 50, 2000);
+    
+}
+function DrawId() {
     ctx.fillStyle = "black";
     ctx.textBaseline = 'middle';
     ctx.font = "50px 'Montserrat'";
@@ -142,6 +158,13 @@ function DynamicText(img) {
     db = this.value;
     ctx.fillText(db, 500, 600);
   });
+  document.getElementById('idnum').addEventListener('keyup', function() {
+   
+   DrawOverlay2(img);
+   DrawId(); 
+   db = this.value;
+   ctx.fillText(db, 100, 600);
+ });
 
 }
 function handleImage(e) {
