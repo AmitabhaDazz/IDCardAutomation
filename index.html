@@ -20,6 +20,9 @@
             
             <input class="controls__input" id="name" type="text" value=""/>
             <label class="controls__label" for="name"></label>
+
+            <input class="controls__input" id="dob" type="text" value=""/>
+            <label class="controls__label" for="dob"></label>
           </div>
           <div id="canvas-wrap">
              <canvas style="display:inline-block" id="imageCanvas" width=400px height=300px>
@@ -49,7 +52,12 @@ function DrawPlaceholder() {
   
 }
 function DrawOverlay(img) {
-    ctx.drawImage(img,0,0);
+  
+    ctx.fillStyle = 'rgba(0,0,0,0)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+}
+function DrawOverlay1(img) {
+
     ctx.fillStyle = 'rgba(0,0,0,0)';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 }
@@ -60,14 +68,29 @@ function DrawText() {
     ctx.fillText(text_title, 50, 2000);
     
 }
+function DrawDOB() {
+    ctx.fillStyle = "black";
+    ctx.textBaseline = 'middle';
+    ctx.font = "50px 'Montserrat'";
+    ctx.fillText(text_title, 50, 2000);
+    
+}
 function DynamicText(img) {
   document.getElementById('name').addEventListener('keyup', function() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  
     DrawOverlay(img);
     DrawText(); 
     text_title = this.value;
     ctx.fillText(text_title, 250, 460);
   });
+  document.getElementById('dob').addEventListener('keyup', function() {
+   
+    DrawOverlay1(img);
+    DrawDOB(); 
+    db = this.value;
+    ctx.fillText(db, 500, 600);
+  });
+
 }
 function handleImage(e) {
     var reader = new FileReader();
